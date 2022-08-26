@@ -7,7 +7,8 @@ export default function preprocessing (text = '') {
     const text_without_stop_words = stop_word(separate_words)
     const text_without_endpoints = removal_endpoints(text_without_stop_words)
 
-    return text_without_endpoints
+    const join_text =   text_without_endpoints.join(' ')
+    return join_text
 }
 
 function stop_word (words = []) { 
@@ -25,11 +26,15 @@ function removal_endpoints (words = []) {
 
     const without_endpoints = []
 
+    console.log(endpoints.length)
     for (let i = 0; i < words.length; i++) {
+        let actual_word = words[i]
+
         for (let j = 0; j < endpoints.length; j++) {
-            const remove = words[i].replace(endpoints[j], '')
-            without_endpoints.push(remove)
+            actual_word = actual_word.replace(endpoints[j], '')
         }
+
+        without_endpoints.push(actual_word)
     }
 
     return without_endpoints

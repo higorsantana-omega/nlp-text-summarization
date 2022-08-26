@@ -1,3 +1,4 @@
+import frequency_word from "./stages/frequency-words.js";
 import preprocessing from "./stages/pre-processing.js";
 
 function init () {
@@ -15,7 +16,7 @@ function init () {
     foi demonstrado que o algoritmo GistSumm`
 
     const text_pre_processing = preprocessing(text)
-    console.log(text_pre_processing)
+    const frequency_words = frequency_word(text_pre_processing)
 }
 
 init()
