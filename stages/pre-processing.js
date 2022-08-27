@@ -23,15 +23,18 @@ function stop_word (words = []) {
 }
 
 function removal_endpoints (words = []) {
-    const endpoints = ['.', ',']
+    const endpoints = `!"#$%&'()*+, -./:;<=>?@[\]^_~`.split('')
+    const more_endpoints = "`{|}".split('')
+
+    const allendpoints = [...endpoints, ...more_endpoints]
 
     const without_endpoints = []
 
     for (let i = 0; i < words.length; i++) {
         let actual_word = words[i]
 
-        for (let j = 0; j < endpoints.length; j++) {
-            actual_word = actual_word.replace(endpoints[j], '')
+        for (let j = 0; j < allendpoints.length; j++) {
+            actual_word = actual_word.replace(allendpoints[j], '')
         }
 
         without_endpoints.push(actual_word)
