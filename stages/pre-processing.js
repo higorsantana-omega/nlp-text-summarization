@@ -1,3 +1,5 @@
+import fs, { read } from 'fs'
+
 export default function preprocessing (text = '') {
     const text_size = text.length
 
@@ -13,10 +15,15 @@ export default function preprocessing (text = '') {
 }
 
 function stop_word (words = []) { 
+    const readStopWords = fs.readFileSync('./stop_words.txt', 'utf-8').toString()
+    const stop_words = readStopWords
+        .split('\n')
+        .map(w => w.trim())
+
     const without_stop_words = []
 
     for (let i = 0; i < words.length; i++) {
-        if (words[i].length > 2)  without_stop_words.push(words[i])
+        if (!stop_words.includes(words[i]))  without_stop_words.push(words[i])
     }
 
     return without_stop_words
