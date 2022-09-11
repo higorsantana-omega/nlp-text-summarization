@@ -13,14 +13,14 @@ export default function summary (sentences) {
 
 function getBestSentences (sentences) {
     if (Object.keys(sentences).length > 3) {
-        return Object.keys(sentences).slice(0, 3)
+        return Object.keys(sentences).slice(0, 6)
     }
 
     if (Object.keys(sentences).length === 1) {
         return Object.keys(sentences)
     }
 
-    return Object.keys(sentences)
+    return Object.keys(sentences).slice(0, 6)
 }
 
 function display (sentences, bestSentences) {

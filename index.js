@@ -1,4 +1,5 @@
-import buidHTML from "./build-html/index.js";
+import { extract } from "article-parser";
+import { stripHtml } from "string-strip-html";
 import frequency_word from "./stages/frequency-words.js";
 import grade_sentences from "./stages/grade-sentences.js";
 import preprocessing from "./stages/pre-processing.js";
@@ -6,10 +7,17 @@ import proportional_frequency_words from "./stages/proportional-frequency-words.
 import summary from "./stages/summary.js";
 import tokenize from "./stages/tokenize.js";
 
-function init () {
-    const text = `Este artigo descreve um comparativo entre dois algoritmos da área
-    de mineração de textos. os quais quais são utilizados na tarefa de sumarização
-    automática de documentos.`
+import fs from 'fs'
+
+function readFile () {
+    const data = fs.readFileSync('./A-Little-Princess.txt', 'utf-8')
+    return data.toString()
+}
+
+async function init () {
+    const fetchWebsite = await extract('https://pt.wikipedia.org/wiki/PlayStation')
+    const cleanedContent = stripHtml(fetchWebsite.content)
+    const text = readFile()
 
     const text_pre_processing = preprocessing(text)
     const frequency_words = frequency_word(text_pre_processing)

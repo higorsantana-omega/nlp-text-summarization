@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "natural": "^5.2.3"
+    "article-parser": "^7.0.1",
+    "natural": "^5.2.3",
+    "string-strip-html": "^11.3.1"
   }
 }

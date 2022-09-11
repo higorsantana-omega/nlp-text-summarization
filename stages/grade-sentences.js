@@ -1,4 +1,5 @@
 export default function grade_sentences (sentences, frequencies) {
+    console.time('Grade sentences')
     const grade = {}
     const just_words = frequencies.map(fr => fr.word)
 
@@ -16,6 +17,6 @@ export default function grade_sentences (sentences, frequencies) {
         grade[sentences[i]] = grade_sentence
         
     }
-
+    console.timeEnd('Grade sentences')
     return grade
 }

@@ -1,7 +1,7 @@
 import fs, { read } from 'fs'
 
 export default function preprocessing (text = '') {
-    const text_size = text.length
+    console.time('Pre processing')
 
     const lowercase_text = text.toLowerCase()
     const without_spaces_text = lowercase_text.replace(/\s+/g, ' ').trim()
@@ -11,6 +11,7 @@ export default function preprocessing (text = '') {
     const text_without_endpoints = removal_endpoints(text_without_stop_words)
 
     const join_text = text_without_endpoints.join(' ')
+    console.timeEnd('Pre processing')
     return join_text
 }
 
